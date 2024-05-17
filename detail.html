@@ -5,32 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Detalle del Producto</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <script src="/products.js"></script>
   </head>
   <body>
-    <div class="container sm-4">
-      <h1 class="text-center">Catalogo de Productos de Laptops</h1>
-    </div>
-    <div class="row">
-      <div class="col col-12 col-sm-12 col-md-8 col-lg-8">
-        <img src="/img/Laptop_ASUS01.webp" class="card-img-top" alt="Laptop_ASUS01" width="100%" height="auto"/>
-      </div>
-      <div class="col col-12 col-sm-12 col-md-4 col-lg-4">
-        <div class="row">
-          <div class="col col-12">
-            <h2>Laptop Asus</h2>
-          </div>
-          <div class="col col-12">
-            <h3>S/ 1,799.00</h3>
-            <h3>Oechsle</h3>
-          </div>
-          <div class="col col-12">
-            <p>Laptop Asus Vivobook Go 15 R3 7320U 512GB SSD 8 GB RAM 15.6" Green Grey</p>
-            <a href="#" class="btn btn-primary">Comprar</a>
-            <a href="/index.html" class="btn btn-primary">Cancelar</a>
-          </div>
+    <div class="container mt-4">
+      <h1 class="text-center">Detalle de Producto</h1>
+      <div class="row mt-4">
+        <div class="col-12 col-md-8">
+          <img id="product-img" class="img-fluid" alt="product-title" />
+        </div>
+        <div class="col-12 col-md-4">
+          <h2 id="product-title"></h2>
+          <h3 id="product-price"></h3>
+          <h3 id="product-store"></h3>
+          <a href="#" class="btn btn-primary">Comprar</a>
+          <a href="/catalogue.html" class="btn btn-secondary">Cancelar</a>
         </div>
       </div>
     </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        products.forEach(product => {
+          if (id == product.id) { // Usé == en lugar de === para comparación flexible
+            document.getElementById('product-img').src = product.img;
+            document.getElementById('product-title').innerText = product.title;
+            document.getElementById('product-price').innerText = product.price;
+            document.getElementById('product-store').innerText = product.store;
+          }
+        });
+      });
+    </script>
     
   </body>
 </html>
